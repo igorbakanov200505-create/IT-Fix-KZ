@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Fix KZ | Ремонт техники в Уральске</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background-color: #e6f2ff;
+            color: #1e3a5f;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        /* Шапка */
+        .header {
+            background: rgba(179, 209, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 70, 150, 0.1);
+            border-bottom: 1px solid #b8d8f0;
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        /* Логотип (изображение) */
+        .logo-img {
+            height: 60px;
+            width: auto;
+            max-width: 100%;
+            display: block;
+        }
+        /* Контакты в шапке */
+        .header-contacts {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        .header-contacts a {
+            color: #1e3a5f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .header-contacts a:hover {
+            color: #3a7bd5;
+        }
+        .btn-whatsapp {
+            background: #4a90e2;
+            padding: 10px 22px;
+            border-radius: 40px;
+            color: white !important;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+        }
+        .btn-whatsapp:hover {
+            background: #3a7bd5;
+            transform: scale(1.02);
+        }
+        /* Hero */
+        .hero {
+            background: linear-gradient(120deg, #d4e6ff 0%, #c2d9ff 100%);
+            padding: 70px 0;
+        }
+        .hero .container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .hero-text {
+            flex: 1 1 400px;
+        }
+        .hero-text h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: #1e3a5f;
+        }
+        .hero-text h2 i {
+            color: #4a90e2;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #2b4b6f;
+            margin-bottom: 30px;
+        }
+        .hero-features {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .hero-features div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #1e3a5f;
+            border: 1px solid #b8d8f0;
+        }
+        .hero-features i {
+            color: #4a90e2;
+        }
+        .hero-form {
+            flex: 1 1 380px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 36px;
+            padding: 40px 35px;
+            box-shadow: 0 15px 30px -15px #4a90e2;
+            border: 1px solid #b8d8f0;
+        }
+        .hero-form h3 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            color: #1e3a5f;
+        }
+        .hero-form p {
+            color: #2b4b6f;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 22px;
+            border: 1px solid #b8d8f0;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: 0.2s;
+            outline: none;
+            background: #ffffff;
+        }
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b4b6f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1.5rem center;
+            background-size: 1.2rem;
+        }
+        .form-group textarea {
+            border-radius: 30px;
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.2);
+            background: white;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #4a90e2, #3a7bd5);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 18px 30px;
+            border: none;
+            border-radius: 50px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px -8px #4a90e2;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px -8px #1e6f9f;
+        }
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .form-message {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 500;
+        }
+        /* Уведомление */
+        #notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 16px 30px;
+            border-radius: 60px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-left: 6px solid #4a90e2;
+            z-index: 1000;
+            font-weight: 500;
+            text-align: center;
+            max-width: 90%;
+            display: none;
+        }
+        #notification i.fa-times {
+            margin-left: 15px;
+            cursor: pointer;
+        }
+        /* Услуги */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 {
+            font-size: 2.3rem;
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+        .section-title p {
+            color: #2b4b6f;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 10px auto 0;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: #f0f7ff;
+            padding: 30px 20px;
+            border-radius: 36px;
+            text-align: center;
+            border: 1px solid #d4e6ff;
+            box-shadow: 0 8px 18px -8px #b8d8f0;
+            transition: 0.25s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #4a90e2;
+            box-shadow: 0 15px 25px -10px #4a90e2;
+        }
+        .service-card i {
+            font-size: 2.6rem;
+            color: #4a90e2;
+            margin-bottom: 15px;
+        }
+        .service-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: #1e3a5f;
+        }
+        .service-card p {
+            color: #2b4b6f;
+        }
+        /* Процесс работы */
+        .process {
+            background: #d4e6ff;
+            padding: 70px 0;
+        }
+        .process-steps {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .step {
+            background: white;
+            border-radius: 40px;
+            padding: 30px 25px;
+            flex: 1 1 200px;
+            text-align: center;
+            box-shadow: 0 10px 20px -10px #4a90e2;
+            border: 1px solid #d4e6ff;
+        }
+        .step-number {
+            background: #4a90e2;
+            color: white;
+            font-weight: 600;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 12px #4a90e2;
+        }
+        .step h4 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #1e3a5f;
+        }
+        .step p {
+            color: #2b4b6f;
+        }
+        /* Цены */
+        .prices {
+            padding: 80px 0;
+            background: white;
+        }
+        .price-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .price-card {
+            background: #f0f7ff;
+            border-radius: 40px;
+            padding: 35px 25px;
+            flex: 1 1 260px;
+            border: 1px solid #d4e6ff;
+            text-align: center;
+            box-shadow: 0 8px 18px -8px #b8d8f0;
+            transition: 0.2s;
+        }
+        .price-card:hover {
+            border-color: #4a90e2;
+            box-shadow: 0 15px 25px -10px #4a90e2;
+        }
+        .price-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: #1e3a5f;
+        }
+        .price-card .price {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin-bottom: 20px;
+        }
+        .price-card .price small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #2b4b6f;
+        }
+        .price-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 20px 0;
+        }
+        .price-card li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #b8d8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .price-card li i {
+            color: #4a90e2;
+        }
+        .price-note {
+            text-align: center;
+            margin-top: 40px;
+            color: #2b4b6f;
+        }
+        .parts-note {
+            text-align: center;
+            margin-top: 30px;
+            background: #d4e6ff;
+            padding: 20px;
+            border-radius: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #1e3a5f;
+            border: 1px solid #b8d8f0;
+        }
+        .parts-note i {
+            color: #4a90e2;
+            margin-right: 8px;
+        }
+        /* Гарантии */
+        .guarantee {
+            background: #e6f2ff;
+            padding: 70px 0;
+        }
+        .guarantee-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .guarantee-item {
+            background: white;
+            border-radius: 40px;
+            padding: 30px 25px;
+            flex: 1 1 220px;
+            text-align: center;
+            box-shadow: 0 8px 18px -8px #b8d8f0;
+            border: 1px solid #d4e6ff;
+            transition: 0.2s;
+        }
+        .guarantee-item:hover {
+            transform: translateY(-5px);
+            border-color: #4a90e2;
+            box-shadow: 0 15px 25px -10px #4a90e2;
+        }
+        .guarantee-item i {
+            font-size: 2.6rem;
+            color: #4a90e2;
+            margin-bottom: 15px;
+        }
+        .guarantee-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #1e3a5f;
+        }
+        .guarantee-item p {
+            color: #2b4b6f;
+        }
+        /* Контакты */
+        .contact {
+            padding: 80px 0;
+            background: white;
+        }
+        .contact .container {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .contact-info {
+            flex: 1 1 300px;
+        }
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #1e3a5f;
+        }
+        .contact-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: #f0f7ff;
+            padding: 15px 20px;
+            border-radius: 60px;
+            border: 1px solid #d4e6ff;
+        }
+        .info-item i {
+            font-size: 1.3rem;
+            color: #4a90e2;
+            width: 32px;
+        }
+        .info-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .contact-form {
+            flex: 1 1 400px;
+            background: #f0f7ff;
+            border-radius: 40px;
+            padding: 40px;
+            box-shadow: 0 10px 25px -10px #b8d8f0;
+            border: 1px solid #d4e6ff;
+        }
+        .contact-form h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #1e3a5f;
+        }
+        .footer {
+            background: #b8d8f0;
+            color: #1e3a5f;
+            padding: 30px 0;
+            text-align: center;
+        }
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .header .container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+            .hero .container {
+                flex-direction: column;
+            }
+            .logo-img {
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <!-- Логотип-изображение (файл logo.png должен лежать в той же папке) -->
+            <img src="logo.png" alt="IT Fix KZ" class="logo-img">
+
+            <div class="header-contacts">
+                <a href="tel:+77073686206"><i class="fas fa-phone-alt"></i> +7 (707) 368-62-06</a>
+                <a href="https://wa.me/77073686206" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Написать в WhatsApp</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-text">
+                <h2>Ремонт техники в Уральске <i class="fas fa-tools"></i><br>от телефона до сервера</h2>
+                <p>Диагностика и выезд мастера — бесплатно*<br><small style="font-size:0.9rem;">*при согласии на ремонт. Выезд без ремонта — 1500 тг.</small></p>
+                <div class="hero-features">
+                    <div><i class="fas fa-clock"></i> 24/7</div>
+                    <div><i class="fas fa-truck"></i> Бесплатный выезд</div>
+                    <div><i class="fas fa-file-signature"></i> Договор и чек</div>
+                </div>
+            </div>
+            <div class="hero-form">
+                <h3>Вызвать мастера</h3>
+                <p>Заполните форму — перезвоним через 5 минут</p>
+                <form id="mainForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Номер телефона" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="deviceType" name="deviceType" required>
+                            <option value="" disabled selected>Выберите тип устройства</option>
+                            <option value="Телефон/смартфон">Телефон / смартфон</option>
+                            <option value="Ноутбук">Ноутбук</option>
+                            <option value="Принтер/МФУ">Принтер / МФУ</option>
+                            <option value="Планшет">Планшет</option>
+                            <option value="Компьютер/ПК">Компьютер / ПК</option>
+                            <option value="Сервер">Сервер</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="problem" name="problem" placeholder="Опишите проблему..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit" id="submitBtn"><i class="fab fa-telegram-plane"></i> Отправить заявку</button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Что мы чиним</h2>
+                <p>Профессиональный ремонт любой техники — от телефона до сервера</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card"><i class="fas fa-mobile-alt"></i><h4>Телефоны и смартфоны</h4><p>iPhone, Samsung, Xiaomi и др.</p></div>
+                <div class="service-card"><i class="fas fa-laptop"></i><h4>Ноутбуки</h4><p>Все бренды: Acer, HP, Lenovo, Apple</p></div>
+                <div class="service-card"><i class="fas fa-print"></i><h4>Принтеры и МФУ</h4><p>Лазерные, струйные, широкоформатные</p></div>
+                <div class="service-card"><i class="fas fa-tablet-alt"></i><h4>Планшеты</h4><p>iPad, Samsung, планшеты на Windows</p></div>
+                <div class="service-card"><i class="fas fa-desktop"></i><h4>Компьютеры и ПК</h4><p>Системные блоки, моноблоки</p></div>
+                <div class="service-card"><i class="fas fa-server"></i><h4>Серверы</h4><p>Обслуживание и ремонт серверного оборудования</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Как мы работаем</h2>
+                <p>Прозрачно, с договором и гарантией</p>
+            </div>
+            <div class="process-steps">
+                <div class="step"><div class="step-number">1</div><h4>Заявка</h4><p>Вы оставляете заявку на сайте или в WhatsApp, указываете тип устройства и проблему</p></div>
+                <div class="step"><div class="step-number">2</div><h4>Согласование</h4><p>Уточняем время и стоимость диагностики</p></div>
+                <div class="step"><div class="step-number">3</div><h4>Выезд / Диагностика</h4><p>Мастер приезжает, проводит диагностику</p></div>
+                <div class="step"><div class="step-number">4</div><h4>Ремонт + документы</h4><p>Подписываем договор, выдаём чек и гарантийный талон</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="prices">
+        <div class="container">
+            <div class="section-title">
+                <h2>Стоимость услуг</h2>
+                <p>Цены ориентировочные, точная смета после диагностики</p>
+            </div>
+            <div class="price-cards">
+                <div class="price-card">
+                    <h3>Диагностика</h3>
+                    <div class="price">0 ₸ <small>при ремонте</small></div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Выезд мастера — бесплатно*</li>
+                        <li><i class="fas fa-check"></i> Диагностика 0 тг, если ремонт</li>
+                        <li><i class="fas fa-check"></i> Отказ — 1500 тг за выезд</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Телефоны / Планшеты</h3>
+                    <div class="price">от 3000 ₸</div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Замена экрана, аккумулятора</li>
+                        <li><i class="fas fa-check"></i> Ремонт после воды</li>
+                        <li><i class="fas fa-check"></i> Программные неисправности</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Ноутбуки / ПК</h3>
+                    <div class="price">от 5000 ₸</div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Чистка от пыли, замена термопасты</li>
+                        <li><i class="fas fa-check"></i> Замена клавиатуры, матрицы</li>
+                        <li><i class="fas fa-check"></i> Ремонт материнской платы</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Принтеры / Серверы</h3>
+                    <div class="price">от 4000 ₸</div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Заправка, ремонт принтеров</li>
+                        <li><i class="fas fa-check"></i> Обслуживание серверов</li>
+                        <li><i class="fas fa-check"></i> Абонентское обслуживание юрлиц</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="parts-note">
+                <i class="fas fa-box-open"></i> Запчасти заказываются индивидуально. Срок поставки — от 2 дней до 2 недель. Используем только оригинальные новые комплектующие.
+            </div>
+            <p class="price-note">* Бесплатный выезд действует при согласии на ремонт.</p>
+        </div>
+    </section>
+
+    <section class="guarantee">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom:40px;">Наши гарантии и документы</h2>
+            <div class="guarantee-grid">
+                <div class="guarantee-item">
+                    <i class="fas fa-file-contract"></i>
+                    <h4>Договор оказания услуг</h4>
+                    <p>Юридическая защита — подписываем до начала работ</p>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fas fa-receipt"></i>
+                    <h4>Чек и акт выполненных работ</h4>
+                    <p>Для физлиц и бухгалтерии юрлиц</p>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Гарантия на все виды работ</h4>
+                    <p>Официальный гарантийный талон</p>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fas fa-microchip"></i>
+                    <h4>Новые запчасти</h4>
+                    <p>Только оригиналы и сертифицированные аналоги</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-info">
+                <h3>Свяжитесь с нами</h3>
+                <div class="info-item"><i class="fas fa-phone-alt"></i> +7 (707) 368-62-06</div>
+                <div class="info-item"><i class="fas fa-envelope"></i> itfixkz@gmail.com</div>
+                <div class="info-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/77073686206">WhatsApp: +7 707 368 62 06</a></div>
+                <div class="info-item"><i class="fas fa-clock"></i> Пн–Вс 9:00–21:00</div>
+            </div>
+            <div class="contact-form">
+                <h3>Оставить заявку</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name2" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone2" name="phone" placeholder="Номер телефона" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="deviceType2" name="deviceType" required>
+                            <option value="" disabled selected>Выберите тип устройства</option>
+                            <option value="Телефон/смартфон">Телефон / смартфон</option>
+                            <option value="Ноутбук">Ноутбук</option>
+                            <option value="Принтер/МФУ">Принтер / МФУ</option>
+                            <option value="Планшет">Планшет</option>
+                            <option value="Компьютер/ПК">Компьютер / ПК</option>
+                            <option value="Сервер">Сервер</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="problem2" name="problem" placeholder="Опишите проблему..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit" id="submitBtn2"><i class="fab fa-telegram-plane"></i> Отправить заявку</button>
+                    <div id="formMessage2" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 IT Fix KZ. Ремонт техники в Уральске с выездом.</p>
+        </div>
+    </footer>
+
+    <!-- Уведомление -->
+    <div id="notification">
+        <span id="notification-message"></span>
+        <i class="fas fa-times" onclick="hideNotification()"></i>
+    </div>
+
+    <script>
+        // Данные Telegram и Google Sheets
+        const TELEGRAM_TOKEN = '8505314309:AAGyeeNuOEKfTo1y5GIaCjpVOZsU6Taums0';
+        const CHAT_ID = '8317935564';
+        // ВАЖНО: замените на ваш новый URL скрипта
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZldTkRJ95wcgsH6Uv-gkwpC07Dj58e0anGUUNS1G05e9xkn6xZkgoqHWiui--BJ5S/exec';
+
+        // Функция показа уведомлений
+        function showNotification(message, type = 'info') {
+            const notif = document.getElementById('notification');
+            const msgSpan = document.getElementById('notification-message');
+            msgSpan.innerText = message;
+            notif.style.borderLeftColor = 
+                type === 'success' ? '#4caf50' : 
+                type === 'warning' ? '#ff9800' : 
+                type === 'error' ? '#f44336' : '#4a90e2';
+            notif.style.display = 'block';
+            setTimeout(hideNotification, 7000);
+        }
+        function hideNotification() {
+            document.getElementById('notification').style.display = 'none';
+        }
+
+        // Универсальная функция отправки формы
+        async function submitForm(formElement, buttonElement, messageElement) {
+            // Определяем, какая это форма (главная или контактная) по наличию полей
+            const nameInput = formElement.querySelector('#name') || formElement.querySelector('#name2');
+            const phoneInput = formElement.querySelector('#phone') || formElement.querySelector('#phone2');
+            const deviceSelect = formElement.querySelector('#deviceType') || formElement.querySelector('#deviceType2');
+            const problemInput = formElement.querySelector('#problem') || formElement.querySelector('#problem2');
+
+            const name = nameInput.value.trim();
+            const phone = phoneInput.value.trim();
+            const deviceType = deviceSelect.value;
+            const problem = problemInput.value.trim();
+
+            if (!name || !phone || !deviceType) {
+                messageElement.innerText = 'Пожалуйста, заполните имя, телефон и выберите устройство.';
+                messageElement.style.color = 'red';
+                return false;
+            }
+
+            // Блокируем кнопку
+            buttonElement.disabled = true;
+            buttonElement.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Отправка...';
+
+            // Готовим данные для отправки
+            const formData = new URLSearchParams();
+            formData.append('name', name);
+            formData.append('phone', phone);
+            formData.append('deviceType', deviceType);
+            formData.append('problem', problem);
+
+            let telegramOk = false;
+            let googleOk = false;
+
+            // 1. Отправка в Telegram (прямая, для надёжности)
+            const telegramMessage = `📩 **Новая заявка на ремонт**\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n📱 Устройство: ${deviceType}\n💻 Проблема: ${problem || 'не указана'}\n🕒 Время: ${new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Oral' })}`;
+            const telegramData = {
+                chat_id: CHAT_ID,
+                text: telegramMessage,
+                parse_mode: 'Markdown'
+            };
+
+            try {
+                const tgResponse = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(telegramData)
+                });
+                if (tgResponse.ok) telegramOk = true;
+            } catch (e) {
+                telegramOk = false;
+            }
+
+            // 2. Отправка в Google Sheets (через ваш скрипт)
+            try {
+                const gsResponse = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // важно для работы с Google Script
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: formData
+                });
+                // из-за no-cors мы не можем прочитать ответ, но запрос уйдёт
+                googleOk = true; // будем считать успехом, если запрос не упал
+            } catch (e) {
+                googleOk = false;
+            }
+
+            // Анализ результатов
+            if (telegramOk && googleOk) {
+                showNotification('✓ Заявка успешно отправлена! Мастер перезвонит вам.', 'success');
+                messageElement.innerText = '';
+                // Очищаем форму
+                nameInput.value = '';
+                phoneInput.value = '';
+                deviceSelect.value = '';
+                problemInput.value = '';
+            } else if (telegramOk && !googleOk) {
+                showNotification('⚠️ Заявка отправлена в Telegram, но не сохранилась в таблицу. Мы свяжемся с вами.', 'warning');
+                messageElement.innerText = '';
+                formElement.reset();
+            } else if (!telegramOk && googleOk) {
+                showNotification('⚠️ Заявка сохранена, но уведомление в Telegram не доставлено. Мы перезвоним.', 'warning');
+                messageElement.innerText = '';
+                formElement.reset();
+            } else {
+                showNotification('❌ Ошибка при отправке. Пожалуйста, позвоните нам или напишите в WhatsApp.', 'error');
+                messageElement.innerText = 'Ошибка. Попробуйте ещё раз или свяжитесь с нами по телефону.';
+                messageElement.style.color = 'red';
+            }
+
+            // Разблокируем кнопку
+            buttonElement.disabled = false;
+            buttonElement.innerHTML = '<i class="fab fa-telegram-plane"></i> Отправить заявку';
+            return true;
+        }
+
+        // Назначаем обработчики на формы
+        const mainForm = document.getElementById('mainForm');
+        const contactForm = document.getElementById('contactForm');
+
+        if (mainForm) {
+            mainForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('submitBtn');
+                const msgDiv = document.getElementById('formMessage');
+                submitForm(this, btn, msgDiv);
+            });
+        }
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('submitBtn2');
+                const msgDiv = document.getElementById('formMessage2');
+                submitForm(this, btn, msgDiv);
+            });
+        }
+    </script>
+</body>
+</html>
