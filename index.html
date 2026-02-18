@@ -39,18 +39,58 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            gap: 15px;
         }
-        /* Логотип (изображение) */
-        .logo-img {
-            height: 60px;
-            width: auto;
-            max-width: 100%;
+        /* Логотип с ноутбуком и инструментами */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-icon {
+            position: relative;
+            font-size: 3rem;
+            color: #4a90e2;
+        }
+        .logo-icon .fa-laptop {
+            font-size: inherit;
+        }
+        .tools {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 8px;
+            color: white;
+            font-size: 1rem;
+            background: rgba(74, 144, 226, 0.9);
+            padding: 6px 12px;
+            border-radius: 30px;
+            white-space: nowrap;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .tools i {
+            font-size: 1.1rem;
+        }
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .logo-text span {
+            font-size: 0.9rem;
+            color: #2b4b6f;
             display: block;
+            margin-top: 2px;
         }
         /* Контакты в шапке */
         .header-contacts {
             display: flex;
-            gap: 24px;
+            gap: 20px;
             align-items: center;
         }
         .header-contacts a {
@@ -507,8 +547,18 @@
             .hero .container {
                 flex-direction: column;
             }
-            .logo-img {
-                height: 50px;
+            .logo-text h1 {
+                font-size: 1.5rem;
+            }
+            .logo-text span {
+                font-size: 0.75rem;
+            }
+            .logo-icon {
+                font-size: 2.5rem;
+            }
+            .tools {
+                font-size: 0.8rem;
+                padding: 4px 8px;
             }
         }
     </style>
@@ -516,9 +566,19 @@
 <body>
     <header class="header">
         <div class="container">
-            <!-- Логотип-изображение (файл logo.png должен лежать в той же папке) -->
-            <img src="logo.png" alt="IT Fix KZ" class="logo-img">
-
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-laptop"></i>
+                    <div class="tools">
+                        <i class="fas fa-wrench"></i>
+                        <i class="fas fa-screwdriver"></i>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <h1>IT Fix KZ</h1>
+                    <span>Уральск | ремонт техники с выездом</span>
+                </div>
+            </div>
             <div class="header-contacts">
                 <a href="tel:+77073686206"><i class="fas fa-phone-alt"></i> +7 (707) 368-62-06</a>
                 <a href="https://wa.me/77073686206" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Написать в WhatsApp</a>
@@ -734,7 +794,6 @@
         // Данные Telegram и Google Sheets
         const TELEGRAM_TOKEN = '8505314309:AAGyeeNuOEKfTo1y5GIaCjpVOZsU6Taums0';
         const CHAT_ID = '8317935564';
-        // ВАЖНО: замените на ваш новый URL скрипта
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZldTkRJ95wcgsH6Uv-gkwpC07Dj58e0anGUUNS1G05e9xkn6xZkgoqHWiui--BJ5S/exec';
 
         // Функция показа уведомлений
@@ -786,7 +845,7 @@
             let telegramOk = false;
             let googleOk = false;
 
-            // 1. Отправка в Telegram (прямая, для надёжности)
+            // 1. Отправка в Telegram
             const telegramMessage = `📩 **Новая заявка на ремонт**\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n📱 Устройство: ${deviceType}\n💻 Проблема: ${problem || 'не указана'}\n🕒 Время: ${new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Oral' })}`;
             const telegramData = {
                 chat_id: CHAT_ID,
@@ -805,16 +864,15 @@
                 telegramOk = false;
             }
 
-            // 2. Отправка в Google Sheets (через ваш скрипт)
+            // 2. Отправка в Google Sheets
             try {
                 const gsResponse = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // важно для работы с Google Script
+                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: formData
                 });
-                // из-за no-cors мы не можем прочитать ответ, но запрос уйдёт
-                googleOk = true; // будем считать успехом, если запрос не упал
+                googleOk = true;
             } catch (e) {
                 googleOk = false;
             }
@@ -823,7 +881,6 @@
             if (telegramOk && googleOk) {
                 showNotification('✓ Заявка успешно отправлена! Мастер перезвонит вам.', 'success');
                 messageElement.innerText = '';
-                // Очищаем форму
                 nameInput.value = '';
                 phoneInput.value = '';
                 deviceSelect.value = '';
@@ -842,7 +899,6 @@
                 messageElement.style.color = 'red';
             }
 
-            // Разблокируем кнопку
             buttonElement.disabled = false;
             buttonElement.innerHTML = '<i class="fab fa-telegram-plane"></i> Отправить заявку';
             return true;
